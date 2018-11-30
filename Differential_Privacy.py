@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Nov 29 14:51:48 2018
+This code is written for homework #12 for BMI500 course.
 
-@author: paris
+@author: Parisa Sarikhani 
 """
 
 import sys
@@ -10,19 +10,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy 
 
-file_path='./adult_age_gender_race_dataset.csv'
+#file_path='./adult_age_gender_race_dataset.csv'
 def Diff_Privacy(file_path,Epsilon):
     # Read the csv file and 
     data=pd.read_csv(file_path)
     df = pd.DataFrame(data) 
     max_Age=df['Age'].max() #Sensitivity
-    # Epsilon:
-    
-    
+
     # plot histogram of original age: 
     
     bin_edges=[5*i+17 for i in range(16)]
-    if Epsilon==0.1:# just plot the original histogram just one time
+    if Epsilon==0.1:# just plot the original histogram just for epsilon=0.1
         count = plt.hist(df['Age'],bins=bin_edges,histtype='bar',rwidth=1,color='white', edgecolor = "black",linestyle = '-')
         _ = plt.xlabel('Age')
         _ = plt.ylabel('# of adults')
@@ -43,7 +41,7 @@ def Diff_Privacy(file_path,Epsilon):
     for i in range(len(New_count)):
         if New_count[i]<0:
             New_count[i]=0
-        
+    #plot noisy histogram    
     new_bin=[bin_edges[k]+2.5 for k in range(len(bin_edges))]
     newcount = plt.bar(new_bin[:-1],New_count, width =5 , edgecolor = "red",linestyle = '--',label='')
 
@@ -57,7 +55,7 @@ def Diff_Privacy(file_path,Epsilon):
     Error=numpy.mean(numpy.abs(count[0]-New_count))
     plt.close()
     return Error
-# plot histogram of laplace
+
 
 if __name__== "__main__":
     
