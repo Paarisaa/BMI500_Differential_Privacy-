@@ -16,3 +16,8 @@ And for multiple values of epsilon run:
 
 ```python Differential_Privacy.py ./adult_age_gender_race_dataset.csv 0.1,0.2,0.4,0.6,0.8,1```
 
+
+Output of the code is a figure of original and noisy histograms for each epsilon and also a plot of error (mean of difference between original and noisy histograms over bins of width 5).
+It also prints the error for each epsilon entered.
+
+Note: You should close each generated figure to see the next one! 
